@@ -1,0 +1,39 @@
+[project]
+name = "model-service-kit"
+version = "0.1.0"
+description = "Reusable local configuration and Chat Completions model API client"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{name = "model-service-kit contributors"}]
+dependencies = ["httpx>=0.28,<0.29", "keyring>=25,<26"]
+
+[project.optional-dependencies]
+dev = ["build>=1.2,<2", "setuptools>=77", "pytest>=8,<10", "ruff>=0.11,<1"]
+
+[project.scripts]
+model-service-config = "model_service.gui:main"
+
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["model_service", "model_service.*"]
+namespaces = false
+
+[tool.setuptools]
+include-package-data = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
